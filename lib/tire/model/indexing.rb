@@ -112,7 +112,7 @@ module Tire
               result
             end
           end
-        rescue Errno::ECONNREFUSED => e
+        rescue Errno::ECONNREFUSED, Errno::ETIMEDOUT, RestClient::RequestTimeout => e
           STDERR.puts "Skipping index creation, cannot connect to Elasticsearch",
                       "(The original exception was: #{e.inspect})"
           false

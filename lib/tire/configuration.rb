@@ -27,6 +27,14 @@ module Tire
       end
     end
 
+    def self.open_timeout(timeout = nil)
+      @open_timeout = timeout || @open_timeout || 5
+    end
+    
+    def self.timeout(timeout = nil)
+      @timeout = timeout || @timeout || 5
+    end
+
     def self.reset(*properties)
       reset_variables = properties.empty? ? instance_variables : instance_variables.map { |p| p.to_s} & \
                                                                  properties.map         { |p| "@#{p}" }
