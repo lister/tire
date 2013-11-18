@@ -116,6 +116,14 @@ module Tire
           STDERR.puts "Skipping index creation, cannot connect to Elasticsearch",
                       "(The original exception was: #{e.inspect})"
           false
+        rescue RestClient::RequestTimeout => e
+          STDERR.puts "Skipping index creation, cannot connect to Elasticsearch",
+                      "(The original exception was: #{e.inspect})"
+          false
+        rescue Errno::ETIMEDOUT => e
+          STDERR.puts "Skipping index creation, cannot connect to Elasticsearch",
+                      "(The original exception was: #{e.inspect})"
+          false
         end
 
         def mapping_options
